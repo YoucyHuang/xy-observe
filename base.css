@@ -1,0 +1,105 @@
+#stage { --ground:#1D2A6B; --main:#FFD6E4; --second:#2B3F8C; --accent:#FFC61A; --ink:#1D2A6B; --blush:#FF8FBA; --mouth:#FF6F8E; --star:#FFFFFF; --lilac:#8C7BE0; --fp-sky:#CFE3DA; --fp-sand:#E3C68E; --fp-teal:#2F7D88; --fp-blue:#7FA9D6; --fp-tear:#BFEFF2; color:var(--main); font-family:var(--sans, system-ui, sans-serif) }
+.ground { position:absolute; inset:0; background:var(--ground) }
+.words { position:absolute; margin:0; display:flex; flex-direction:column; gap:24px } .words > * { margin:0 }
+.line { font-family:var(--display, var(--sans, system-ui, sans-serif)); font-size:72px; line-height:1.15; font-weight:700; color:var(--star) } .sub { font-size:36px }
+.art { position:absolute; inset:0; width:100%; height:100%; overflow:visible }
+.halo { fill:var(--second) }
+.spark { fill:var(--accent) } .twinkle { fill:var(--star) } .dot { fill:var(--lilac) }
+.shadow { fill:color-mix(in srgb, var(--second) 60%, var(--ground)) }
+.ink { fill:none; stroke:var(--ink); stroke-linecap:round; stroke-linejoin:round }
+.yy-body { fill:var(--main); stroke:var(--ink); stroke-width:18; stroke-linejoin:round }
+.yy-skin { fill:var(--main); stroke:var(--ink); stroke-width:10; stroke-linejoin:round }
+.yy-leg { fill:none; stroke:var(--main); stroke-width:24; stroke-linecap:round }
+.yy-gold { fill:var(--accent); stroke:var(--ink); stroke-width:10; stroke-linejoin:round }
+.yy-dot { fill:var(--accent) }
+.yy-wave { fill:none; stroke:color-mix(in srgb, var(--ink) 55%, transparent); stroke-width:6; stroke-linecap:round }
+.yy-rim { fill:none; stroke:var(--ink); stroke-width:14 }
+.yy-hi { fill:var(--star) }
+.yy-blush { fill:var(--blush) }
+.yy-nose { fill:var(--blush); stroke:var(--ink); stroke-width:7 }
+.yy-mouth { fill:var(--mouth); stroke:var(--ink); stroke-width:10; stroke-linejoin:round }
+.yy-throat { fill:color-mix(in srgb, var(--mouth) 55%, var(--ink)) }
+.yy-tongue { fill:var(--blush); stroke:var(--ink); stroke-width:8; stroke-linejoin:round }
+.rock { fill:color-mix(in srgb, var(--star) 46%, var(--second)); stroke:var(--ink); stroke-width:16; stroke-linejoin:round }
+.rock-spot { fill:color-mix(in srgb, var(--star) 28%, var(--second)) }
+.crack { fill:none; stroke:var(--ink); stroke-width:9; stroke-linecap:round; stroke-linejoin:round }
+.leak { fill:none; stroke:var(--accent); stroke-width:30; stroke-linecap:round; stroke-linejoin:round }
+.fp-sky { fill:var(--fp-sky) } .fp-sand { fill:var(--fp-sand); stroke:var(--ink); stroke-width:6 } .fp-far { fill:color-mix(in srgb, var(--fp-teal) 45%, var(--fp-sky)); stroke:var(--ink); stroke-width:4 }
+.fp-flesh { fill:var(--fp-blue); stroke:var(--ink); stroke-width:10; stroke-linejoin:round }
+.fp-water { fill:var(--fp-teal); stroke:var(--ink); stroke-width:8 } .fp-shine { fill:none; stroke:var(--fp-tear); stroke-width:6; stroke-linecap:round }
+.fp-tear { fill:var(--fp-tear); stroke:var(--ink); stroke-width:4; vector-effect:non-scaling-stroke }
+.fp-white { fill:color-mix(in srgb, var(--star) 85%, var(--fp-sky)); stroke:none }
+.fp-hatch { stroke:var(--ink); stroke-width:1.6; opacity:.3 }
+.logo-shade { fill:none; stroke:var(--accent); stroke-width:54; stroke-linecap:round; stroke-linejoin:round }
+.logo-ink { fill:none; stroke:var(--ink); stroke-width:56; stroke-linecap:round; stroke-linejoin:round }
+.logo-pink { fill:none; stroke:var(--main); stroke-width:34; stroke-linecap:round; stroke-linejoin:round }
+.logo-finger { fill:none; stroke:var(--main); stroke-width:11; stroke-linecap:round }
+.logo-dotshade { fill:var(--accent) } .logo-palm { fill:var(--main) }
+.snow-sky { fill:color-mix(in srgb, var(--lilac) 22%, var(--star)) }
+.snow-ground { fill:color-mix(in srgb, var(--fp-sky) 30%, var(--star)); stroke:var(--ink); stroke-width:6 }
+.snow-flake { fill:var(--star); stroke:color-mix(in srgb, var(--lilac) 85%, var(--ink)); stroke-width:2.5 }
+.snow-puff { fill:var(--star); stroke:color-mix(in srgb, var(--lilac) 50%, var(--star)); stroke-width:3 }
+.snow-orb { fill:color-mix(in srgb, var(--fp-blue) 40%, var(--star)); stroke:var(--ink); stroke-width:5 }
+.snow-shadow { fill:color-mix(in srgb, var(--lilac) 30%, var(--star)) }
+.snow-banana { stroke:var(--ink); stroke-width:9; stroke-linejoin:round }
+.snow-stem { fill:color-mix(in srgb, var(--accent) 35%, var(--ink)); stroke:var(--ink); stroke-width:5; stroke-linejoin:round }
+.snow-ridge { fill:none; stroke:color-mix(in srgb, var(--accent) 55%, var(--ink)); stroke-width:4; stroke-linecap:round; opacity:.45 }
+.snow-groove { fill:none; stroke:color-mix(in srgb, var(--lilac) 45%, var(--star)); stroke-width:16; stroke-linecap:round }
+.snow-fur { fill:color-mix(in srgb, var(--fp-teal) 55%, var(--lilac)); stroke:var(--ink); stroke-width:7; stroke-linejoin:round }
+.snow-face { fill:var(--fp-sand); stroke:var(--ink); stroke-width:5 }
+.snow-limb { fill:none; stroke:var(--ink); stroke-width:13; stroke-linecap:round; stroke-linejoin:round }
+.snow-eyewhite { fill:var(--star); stroke:var(--ink); stroke-width:4 } .snow-pupil { fill:var(--ink) }
+.sum-sky { fill:color-mix(in srgb, var(--fp-sand) 45%, var(--star)) }
+.sum-sun { fill:var(--accent); stroke:var(--ink); stroke-width:7 }
+.sum-ring { fill:none; stroke:var(--accent); stroke-width:6 }
+.sum-ground { fill:var(--fp-sand); stroke:var(--ink); stroke-width:6 }
+.sum-rock { fill:color-mix(in srgb, var(--fp-sand) 70%, var(--ink)); stroke:var(--ink); stroke-width:7; stroke-linejoin:round }
+.sum-col { fill:color-mix(in srgb, var(--fp-teal) 60%, var(--fp-sand)); stroke:var(--ink); stroke-width:7 }
+.sum-crack { fill:none; stroke:color-mix(in srgb, var(--fp-sand) 55%, var(--ink)); stroke-width:5; stroke-linecap:round }
+.sum-shimmer { fill:none; stroke:color-mix(in srgb, var(--fp-sand) 40%, var(--star)); stroke-width:5; stroke-linecap:round }
+.sum-heat { fill:none; stroke-width:8; stroke-linecap:round }
+.sum-swirl-ink { fill:none; stroke:var(--ink); stroke-width:16; stroke-linecap:round }
+.sum-swirl { fill:none; stroke:color-mix(in srgb, var(--fp-tear) 70%, var(--star)); stroke-width:7; stroke-linecap:round }
+.sum-wind { fill:none; stroke:var(--fp-tear); stroke-width:5; stroke-linecap:round; stroke-dasharray:18 22 }
+.cap { color:var(--ink); font-size:68px; font-weight:700; letter-spacing:.08em; line-height:1.3; text-align:center }
+.think-floor { fill:color-mix(in srgb, var(--fp-sky) 55%, var(--star)); stroke:var(--ink); stroke-width:6 }
+.think-bubble { fill:var(--star); stroke:var(--ink); stroke-width:7 } .think-dot { fill:var(--lilac) }
+.burger-bun { fill:color-mix(in srgb, var(--accent) 45%, var(--fp-sand)); stroke:var(--ink); stroke-width:7; stroke-linejoin:round }
+.burger-patty { fill:color-mix(in srgb, var(--fp-sand) 45%, var(--ink)); stroke:var(--ink); stroke-width:6 }
+.burger-leaf { fill:color-mix(in srgb, var(--fp-teal) 55%, var(--star)); stroke:var(--ink); stroke-width:5; stroke-linejoin:round }
+.burger-cheese { fill:var(--accent); stroke:var(--ink); stroke-width:5; stroke-linejoin:round } .burger-seed { fill:var(--star) }
+.burger-ring { fill:none; stroke:var(--ink); stroke-width:5; stroke-dasharray:30 26; stroke-linecap:round }
+.giant-ink { fill:none; stroke:var(--ink); stroke-width:54; stroke-linecap:round } .giant-finger { fill:none; stroke:var(--fp-blue); stroke-width:36; stroke-linecap:round }
+.cap-light { color:var(--star) }
+.heart-bg { fill:color-mix(in srgb, var(--ink) 75%, var(--fp-teal)) }
+.heart-window { fill:color-mix(in srgb, var(--ink) 75%, var(--fp-teal)); stroke:var(--ink); stroke-width:6 }
+.heart-ring { fill:none; stroke:color-mix(in srgb, var(--fp-teal) 45%, var(--ink)); stroke-width:3 }
+.heart-shape { stroke:var(--ink); stroke-width:10; stroke-linejoin:round; vector-effect:non-scaling-stroke }
+.heart-crack { fill:none; stroke:var(--ink); stroke-width:8; stroke-linejoin:round; vector-effect:non-scaling-stroke }
+.heart-ash { fill:color-mix(in srgb, var(--star) 55%, var(--ink)) }
+.fp-stalk { fill:none; stroke:var(--ink); stroke-width:7; stroke-linecap:round } .fp-bulb { fill:var(--blush); stroke:var(--ink); stroke-width:6 }
+.mir-shirt { fill:color-mix(in srgb, var(--fp-teal) 50%, var(--star)); stroke:var(--ink); stroke-width:10; stroke-linejoin:round }
+.mir-sleeve { fill:color-mix(in srgb, var(--fp-teal) 50%, var(--star)); stroke:var(--ink); stroke-width:9; stroke-linejoin:round }
+.mir-cuff { fill:color-mix(in srgb, var(--fp-teal) 78%, var(--star)); stroke:var(--ink); stroke-width:8; stroke-linejoin:round }
+.mir-frame { fill:color-mix(in srgb, var(--fp-sand) 70%, var(--accent)); stroke:var(--ink); stroke-width:10; stroke-linejoin:round; stroke-linecap:round }
+.mir-feet { fill:none; stroke:var(--ink); stroke-width:14; stroke-linecap:round }
+.mir-bead { fill:var(--blush); stroke:var(--ink); stroke-width:6; stroke-linejoin:round }
+.mir-glass { fill:color-mix(in srgb, var(--fp-tear) 45%, var(--fp-blue)) }
+.mir-rfloor { fill:color-mix(in srgb, var(--fp-sand) 60%, var(--fp-blue)) }
+.mir-shine { fill:none; stroke:var(--star); stroke-width:9; stroke-linecap:round; opacity:.7 }
+.mir-notehead { fill:var(--ink) }
+.poo-sky { fill:color-mix(in srgb, var(--fp-blue) 30%, var(--star)) }
+.poo-ground { fill:color-mix(in srgb, var(--fp-teal) 28%, var(--fp-sand)); stroke:var(--ink); stroke-width:6 }
+.poo-body { --poo:#8A5A3B; fill:var(--poo); stroke:var(--ink); stroke-width:8; stroke-linejoin:round }
+.poo-shine { fill:none; stroke:color-mix(in srgb, var(--star) 55%, #8A5A3B); stroke-width:6; stroke-linecap:round }
+.poo-stink { fill:none; stroke:color-mix(in srgb, var(--fp-teal) 55%, var(--star)); stroke-width:6; stroke-linecap:round }
+.poo-flyb { fill:var(--ink) } .poo-wing { fill:var(--star); stroke:var(--ink); stroke-width:2; opacity:.85 }
+.poo-pocket { fill:color-mix(in srgb, var(--main) 72%, var(--blush)); stroke:var(--ink); stroke-width:9; stroke-linejoin:round }
+.poo-stitch { fill:none; stroke:var(--ink); stroke-width:4; stroke-dasharray:10 9; stroke-linecap:round; opacity:.55 }
+.poo-bubring { fill:none; stroke:var(--ink); stroke-width:5; stroke-dasharray:18 16 }
+.promo-device { position:absolute; left:0; top:0; width:390px; height:844px; transform-origin:0 0; border-radius:40px; box-shadow:0 0 0 15px var(--ink), 0 0 0 21px color-mix(in srgb, var(--fp-blue) 60%, var(--ink)) }
+.promo-screen { position:absolute; inset:0; overflow:hidden; border-radius:40px; background:color-mix(in srgb, var(--fp-blue) 30%, var(--star)) }
+.promo-video { position:absolute; left:0; top:0; width:390px; height:844.4px; display:block }
+.promo-sticker { position:absolute; left:0; top:0; overflow:hidden }
+.promo-star { stroke:var(--ink); stroke-width:.25 }
+.th-ring { fill:none; stroke-width:5 }

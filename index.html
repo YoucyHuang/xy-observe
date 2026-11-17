@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小Y 的自我观察册</title>
+<link rel="stylesheet" href="base.css">
+<style>
+:root {
+  --ink:#1D2A6B; --main:#FFD6E4; --second:#2B3F8C; --accent:#FFC61A; --blush:#FF8FBA; --mouth:#FF6F8E; --star:#FFFFFF; --lilac:#8C7BE0;
+  --bg:#FBF6EA; --card:#FFFFFF; --soft:#F3ECDC; --muted:#6B7095; --line:#E4DCC8;
+  --dA:#4FA3FF; --dB:#FF7A1A; --dC:#FF5FA2; --dD:#A98BEA;
+}
+* { box-sizing:border-box }
+html, body { margin:0; background:var(--bg); color:var(--ink) }
+body { font-family:-apple-system, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif; font-size:16px; line-height:1.7 }
+.wrap { max-width:560px; margin:0 auto; padding:24px 16px 64px }
+h1, h2, h3, .serif { font-family:"Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", "SimSun", serif; font-weight:700; letter-spacing:1px }
+h1 { font-size:28px; line-height:1.35; margin:8px 0 4px }
+h2 { font-size:21px; margin:0 0 10px }
+h3 { font-size:17px; margin:14px 0 6px }
+p { margin:0 0 10px }
+.muted { color:var(--muted) }
+.small { font-size:13px }
+.card { background:var(--card); border:2px solid var(--ink); border-radius:20px; padding:20px; margin:16px 0 }
+.card.soft { background:var(--soft); border-color:var(--line) }
+.btn { display:block; width:100%; border:2px solid var(--ink); background:var(--accent); color:var(--ink); font-size:17px; font-weight:700; padding:14px; border-radius:40px; cursor:pointer; font-family:inherit }
+.btn:disabled { background:#E8E4DA; color:#9A9CB0; border-color:#C9C4B6; cursor:not-allowed }
+.btn.ghost { background:transparent }
+.btn + .btn { margin-top:10px }
+.mascot { display:block; margin:0 auto; width:150px; height:190px }
+.tag { display:inline-block; font-size:13px; letter-spacing:2px; color:var(--muted) }
+ol.rules { padding-left:20px; margin:8px 0 0 } ol.rules li { margin-bottom:8px }
+.agree { display:flex; gap:10px; align-items:flex-start; padding:14px; margin:16px 0; border-radius:14px; background:var(--soft); cursor:pointer; font-weight:600 }
+.agree input { width:22px; height:22px; margin-top:2px; accent-color:var(--ink); flex:none }
+.bar { height:10px; border-radius:10px; background:var(--soft); overflow:hidden; border:1.5px solid var(--line) }
+.bar > i { display:block; height:100%; background:var(--accent); transition:width .25s }
+.qmeta { display:flex; justify-content:space-between; font-size:13px; color:var(--muted); margin:14px 0 6px }
+.qtext { font-size:20px; line-height:1.6; min-height:96px; margin:18px 0 20px; font-weight:600 }
+.opt { display:block; width:100%; text-align:left; padding:13px 18px; margin-bottom:10px; border:2px solid var(--line); background:var(--card); border-radius:14px; font-size:16px; cursor:pointer; color:var(--ink); font-family:inherit }
+.opt:hover { border-color:var(--ink) }
+.opt.on { border-color:var(--ink); background:var(--main); font-weight:700 }
+.opt b { display:inline-block; width:28px; color:var(--muted); font-weight:600 }
+.navrow { display:flex; justify-content:space-between; align-items:center; margin-top:8px }
+.link { background:none; border:none; color:var(--muted); font-size:15px; cursor:pointer; padding:6px 0; font-family:inherit }
+.field { margin:18px 0 } .field > label.q { display:block; font-weight:700; margin-bottom:8px }
+.chips { display:flex; flex-wrap:wrap; gap:8px }
+.chip { border:2px solid var(--line); background:var(--card); border-radius:30px; padding:7px 14px; cursor:pointer; font-size:15px; color:var(--ink); font-family:inherit }
+.chip.on { border-color:var(--ink); background:var(--main); font-weight:700 }
+.codein { width:100%; border:2px solid var(--ink); border-radius:12px; padding:12px 14px; font-size:18px; letter-spacing:2px; font-family:ui-monospace, Consolas, monospace; color:var(--ink); background:var(--card); text-transform:uppercase }
+input[type=range] { width:100%; accent-color:var(--ink) }
+textarea { width:100%; min-height:70px; border:2px solid var(--line); border-radius:12px; padding:10px; font-family:inherit; font-size:15px; color:var(--ink); background:var(--card) }
+.score { display:grid; grid-template-columns:90px 1fr 92px; gap:8px; align-items:center; margin:10px 0; font-size:15px } .score b { white-space:nowrap }
+.score .bar > i { background:var(--c) }
+.lv { font-size:13px; font-weight:700; text-align:right; white-space:nowrap }
+.dim { border-left:6px solid var(--c) }
+.dim h2 { color:var(--ink) }
+.pill { display:inline-block; font-size:12px; font-weight:700; padding:2px 10px; border-radius:20px; background:var(--c); color:#fff; margin-left:6px; vertical-align:middle }
+ul.tight { padding-left:20px; margin:6px 0 } ul.tight li { margin-bottom:4px }
+.strength { text-align:center; background:var(--ink); color:#FBF6EA; border-color:var(--ink) }
+.strength .big { font-size:30px; color:var(--accent); margin:4px 0 }
+.next { background:#FFF4CC; border-color:var(--accent) }
+.sheet table { width:100%; border-collapse:collapse; font-size:14px } .sheet td { border-bottom:1px solid var(--line); padding:7px 4px; vertical-align:top } .sheet td:first-child { width:34%; color:var(--muted) }
+.days li { margin-bottom:8px }
+.foot { text-align:center; font-size:12px; color:var(--muted); margin-top:28px }
+.hide { display:none !important }
+@media print {
+  body { background:#fff } .noprint { display:none !important } .card { break-inside:avoid; border-width:1px } .wrap { max-width:none; padding:0 }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- 1. 开始前：阅读确认 -->
+<section id="s-intro">
+  <svg class="mascot" viewBox="-330 -770 660 800" aria-hidden="true"><g id="m-intro"></g></svg>
+  <div style="text-align:center"><span class="tag">小Y的星球笔记 · ADHD</span>
+    <h1>小Y 的自我观察册</h1>
+    <p class="muted">40 道题，大约 8–10 分钟。<br>帮你更懂自己，也更好地去看医生。</p></div>
+  <div class="card">
+    <h2>开始之前，请花 30 秒读一读</h2>
+    <ol class="rules">
+      <li>这是一份<b>自我观察工具</b>，不是诊断，也不能代替医生的评估。</li>
+      <li>题目为原创，<b>不是</b>医院使用的标准量表。结果只用来帮你观察自己，不代表“是”或“不是”。</li>
+      <li>只有精神科或心理科医生，结合面谈、成长经历和其他检查，才能做出 ADHD 的诊断和分型。</li>
+      <li>你的答案只保存在你自己的设备上，不会上传。</li>
+      <li>如果你最近有伤害自己的想法，请先停下来，马上联系身边信任的人，或拨打心理援助热线（如 12356）。</li>
+    </ol>
+    <div id="codebox" class="field">
+      <label class="q" for="code">输入兑换码</label>
+      <input id="code" class="codein" placeholder="XY-XXXX-XXXX" autocomplete="off" autocapitalize="characters" spellcheck="false">
+      <p class="small muted" style="margin:6px 0 0">兑换码在「小Y的星球笔记」店铺购买后获得。兑换成功后，这台设备以后打开不用再输。</p>
+      <p id="codeerr" class="small" style="color:#C0392B;margin:4px 0 0"></p>
+    </div>
+    <label class="agree"><input type="checkbox" id="agree"> 我已阅读并理解以上内容</label>
+    <button class="btn" id="go" disabled>开始观察</button>
+    <button class="btn ghost hide" id="resume">继续上次的观察</button>
+  </div>
+</section>
+
+<!-- 2. 40 道题 -->
+<section id="s-quiz" class="hide">
+  <div class="qmeta"><span id="qn"></span><span>想想最近半年的大多数时候</span></div>
+  <div class="bar"><i id="qbar"></i></div>
+  <div class="qtext" id="qtext"></div>
+  <div id="opts"></div>
+  <div class="navrow"><button class="link" id="prev">← 上一题</button><span class="small muted">选完自动进入下一题</span></div>
+</section>
+
+<!-- 3. 背景线索 -->
+<section id="s-bg" class="hide">
+  <span class="tag">最后一步 · 不计分</span>
+  <h1>一些背景线索</h1>
+  <p class="muted">这些不计分，会直接放进你的就诊清单。医生评估时，会关心这些问题。不想答的可以跳过。</p>
+  <div class="card" id="bgform"></div>
+  <button class="btn" id="finish">生成我的观察结果</button>
+  <button class="link" id="bgback" style="display:block;margin:10px auto 0">← 回到题目</button>
+</section>
+
+<!-- 4. 结果 -->
+<section id="s-result" class="hide"></section>
+
+</div>
+<script src="codes.js"></script>
+<script src="shared.js"></script>
+<script>
+// ---------- content ----------
+const DIMS = [
+  { key: 'A', name: '注意力', c: 'var(--dA)', items: [
+    '读一段文字，读到一半发现根本没看进去，得从头再读。', '别人说话时，你人在听，脑子已经去了别的地方。', '做需要细心的事（填表、对账）时，容易漏一行、写错一个数。', '手头的事还没做完，就被另一个想法带走了。', '钥匙、耳机、卡这类小东西，常常要找。',
+    '做无聊但必要的事（报销、整理文件）时，很难撑过十分钟。', '看剧或看视频的时候，总忍不住同时刷手机。', '周围有一点声音或动静，就很难再集中。', '刚放下的东西，一转身就忘了放在哪。', '约好的事、该回的消息，常常一转头就忘了。'],
+    what: '注意力常常不是“不够”，而是很难停在你想要的地方：容易被新的东西拉走，也容易在无聊的事上溜号。',
+    tips: ['把干扰挪出视线：做事时，手机放到另一个房间。', '一次只开一个窗口，做完再开下一个。', '重要的事说出来，或写在一眼能看到的地方。'] },
+  { key: 'B', name: '冲动与多动', c: 'var(--dB)', items: [
+    '坐久了身体会不自觉地动：抖腿、转笔、换姿势。', '别人话还没说完，你已经忍不住接上了。', '一时兴起就下单、报名、答应别人，过后有点后悔。', '排队、等电梯、等回复的时候，觉得特别难熬。', '脑子里像有台停不下来的发动机，很难真正安静下来。',
+    '话说得又快又多，事后才发现说过头了。', '很难只做一件事，总想同时开好几件。', '做决定很快，常常没想完就拍板了。', '一无聊就坐立不安，必须找点事做。', '开会或上课时，要花很大力气才能坐住。'],
+    what: '身体或脑子里，有一股停不下来的劲：想到就做，话到嘴边就说。成人身上，它常常从“坐不住”变成“心里静不下来”。',
+    tips: ['下单或答应别人之前，可以试试隔一晚再决定。', '允许自己有小动作：握个解压球，或者站着做事。', '开口前在心里说一句“等他说完”。做不到也没关系。'] },
+  { key: 'C', name: '情绪调节', c: 'var(--dC)', items: [
+    '情绪来得很快，一点小事就能让心情一下子掉下去。', '一句批评或一个冷淡的眼神，会在心里反复回放好几天。', '生气或委屈的时候，很难让自己平静下来。', '觉得被拒绝时，第一反应是“是不是我哪里不好”。', '开心和难过，都比身边的人来得更满、更强烈。',
+    '小小的不顺（比如找不到东西），会让你一下子特别烦躁。', '一件事没做好，就容易把一整天都否定掉。', '很怕让别人失望，会为此反复解释或讨好。', '情绪上来时说出的话，事后常常后悔。', '情绪过去之后会特别累，要很久才缓过来。'],
+    what: '情绪来得快、来得满，也比较难自己降下来。有人把“对批评和拒绝特别敏感”叫作拒绝敏感（RSD），这是通俗说法，不是诊断标准。',
+    tips: ['情绪上来时，先离开现场 10 分钟再说话。', '给情绪起个名字：“我现在是委屈”，说出来会松一点。', '难过过后，给自己留一段恢复的时间，不用急着好起来。'] },
+  { key: 'D', name: '执行功能', c: 'var(--dD)', items: [
+    '知道该开始了，身体却怎么都动不起来。', '没有截止日期的事，几乎永远开始不了。', '很难估计一件事要花多久，常常估少了。', '一件事有好几步时，不知道该从哪一步下手。', '做到八成就很难收尾，手边总有好几件“快做完”的事。',
+    '列了很多计划，真正执行的很少。', '上班、赴约、交东西，常常踩点或迟到。', '东西用完很难放回原处，桌面和房间越堆越乱。', '明知道一件事很重要，却总是先去做不重要的小事。', '只有快来不及的时候，才突然能高效起来。'],
+    what: '执行功能像大脑里的“项目经理”，负责启动、排顺序、估时间和收尾。“知道要做却做不到”，常常是这里卡住了。',
+    tips: ['把第一步拆到小得可笑：只做 2 分钟。', '给没有截止的事，造一个小截止：25 分钟倒计时。', '在小Y 的每日计划里写一件最小的事，做完打个勾。'] }
+];
+const OPTS = ['几乎没有', '偶尔', '有时', '经常', '几乎总是'];
+const STRENGTH = {
+  A: ['雷达型', '很多有这类特质的人也发现，自己很容易注意到别人忽略的新东西、小变化。'],
+  B: ['行动派', '很多有这类特质的人也发现，自己说干就干，特别适合起步和救火。'],
+  C: ['共情者', '很多有这类特质的人也发现，自己感受很细，常常最先察觉到别人的情绪。'],
+  D: ['冲刺者', '很多有这类特质的人也发现，自己在有截止日期时，能爆发很强的专注。']
+};
+const DAYS = ['给想法一个停车场：准备一个本子或备忘录，想到别的事就先记下来。', '把一件事拆到小得可笑：第一步只做 2 分钟。', '造一点小紧急：给一件事定 25 分钟倒计时。', '把干扰挪出视线：做事时，手机放到另一个房间。', '给情绪起名字：难受时，说一句“我现在是……”。', '到家留 20 分钟：什么都不做，让自己慢慢卸下来。', '回头看看：这 7 天里哪一个最有用？在小Y 的每日计划里写下明天最小的一件事。'];
+const BG = [
+  { id: 'onset', q: '这些情况大概从什么时候开始？', type: 'one', opts: ['12 岁以前', '青春期', '成年以后', '记不清'] },
+  { id: 'where', q: '主要出现在哪些场合？（可多选）', type: 'many', opts: ['学习或工作', '家里', '人际关系', '开车或出行', '花钱'] },
+  { id: 'impact', q: '对生活的影响有多大？', type: 'range' },
+  { id: 'health', q: '最近半年，有没有这些情况？（可多选）', type: 'many', opts: ['睡眠不好', '长期情绪低落', '经常焦虑', '身体不舒服', '都还好'] },
+  { id: 'history', q: '以前有没有被诊断过焦虑、抑郁或其他情况？在吃什么药？', type: 'text', ph: '可以不填' },
+  { id: 'child', q: '小时候的线索：老师评语、成绩单、家人的回忆里，有没有类似的描述？', type: 'text', ph: '比如：“上课爱走神”“很聪明就是不用心”' }
+];
+const LEVEL = (s) => s >= 27 ? ['经常出现', '#C0392B'] : s >= 15 ? ['有时出现', '#B7791F'] : ['较少出现', '#2F855A'];
+
+// ---------- state (only on this device) ----------
+const KEY = 'xy-observe-v1';
+let S = load() || fresh();
+function fresh() {
+  const order = [];
+  DIMS.forEach((d, di) => d.items.forEach((t, ii) => order.push([di, ii])));
+  for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
+  return { order, ans: {}, pos: 0, bg: { impact: 5 }, step: 'intro', done: false };
+}
+function load() { try { const v = JSON.parse(localStorage.getItem(KEY)); return v && v.order ? v : null; } catch (e) { return null; } }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+const $ = (id) => document.getElementById(id);
+function show(id) { ['s-intro', 's-quiz', 's-bg', 's-result'].forEach((x) => $(x).classList.toggle('hide', x !== id)); window.scrollTo(0, 0); }
+
+// ---------- mascot ----------
+function mascot(el, p) {
+  el.innerHTML = YY.svg('m');
+  YY.set(YY.bind(el.querySelector('.yy')), Object.assign({ x: 0, y: 0, scale: 1 }, p));
+}
+mascot($('m-intro'), { mouth: 'smile', eye: YY.EMO.calm, armL: 40, armR: 10, lookY: -10 });
+
+// ---------- intro ----------
+function isUnlockedNow() { try { return localStorage.getItem('xy-unlocked') === '1'; } catch (e) { return false; } }
+$('agree').addEventListener('change', (e) => { $('go').disabled = !e.target.checked; });
+if (!isUnlockedNow()) { /* resume only after the code was redeemed on this device */ }
+else if (Object.keys(S.ans).length && !S.done) { $('resume').classList.remove('hide'); $('resume').textContent = '继续上次的观察（已答 ' + Object.keys(S.ans).length + ' / 40）'; }
+if (isUnlockedNow() && S.done) { $('resume').classList.remove('hide'); $('resume').textContent = '查看上次的结果'; }
+// ---------- redeem code (checked against salted fingerprints in codes.js) ----------
+const SALT = 'xy-observe-2026', UKEY = 'xy-unlocked';
+function isUnlocked() { try { return localStorage.getItem(UKEY) === '1'; } catch (e) { return false; } }
+async function checkCode(raw) {
+  const code = raw.trim().toUpperCase().replace(/\s+/g, '');
+  if (!/^XY-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(code)) return false;
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(SALT + code));
+  const hex = Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, '0')).join('');
+  return (window.XY_CODES || []).includes(hex);
+}
+if (isUnlocked()) $('codebox').classList.add('hide');
+$('code').addEventListener('input', () => { $('codeerr').textContent = ''; });
+$('go').addEventListener('click', async () => {
+  if (!isUnlocked()) {
+    if (!(await checkCode($('code').value))) { $('codeerr').textContent = '兑换码不对，请核对一下（格式像 XY-AB12-CD34）。'; $('code').focus(); return; }
+    try { localStorage.setItem(UKEY, '1'); } catch (e) {}
+  }
+  S = fresh(); S.step = 'quiz'; save(); renderQ(); show('s-quiz');
+});
+$('resume').addEventListener('click', () => {
+  if (!$('agree').checked) { $('agree').closest('.agree').style.outline = '3px solid var(--accent)'; return; }
+  if (S.done) { renderResult(); show('s-result'); } else if (Object.keys(S.ans).length >= 40) { renderBG(); show('s-bg'); } else { renderQ(); show('s-quiz'); }
+});
+$('agree').addEventListener('change', () => { $('agree').closest('.agree').style.outline = ''; });
+
+// ---------- quiz ----------
+function renderQ() {
+  const [di, ii] = S.order[S.pos], k = di + '-' + ii;
+  $('qn').textContent = '第 ' + (S.pos + 1) + ' / 40 题';
+  $('qbar').style.width = (S.pos / 40 * 100) + '%';
+  $('qtext').textContent = DIMS[di].items[ii];
+  $('opts').innerHTML = OPTS.map((o, v) => '<button class="opt' + (S.ans[k] === v ? ' on' : '') + '" data-v="' + v + '"><b>' + v + '</b>' + o + '</button>').join('');
+  $('prev').style.visibility = S.pos ? 'visible' : 'hidden';
+}
+$('opts').addEventListener('click', (e) => {
+  const b = e.target.closest('.opt'); if (!b) return;
+  const [di, ii] = S.order[S.pos];
+  S.ans[di + '-' + ii] = +b.dataset.v;
+  [...$('opts').children].forEach((x) => x.classList.toggle('on', x === b));
+  save();
+  setTimeout(() => {
+    if (S.pos < 39) { S.pos++; save(); renderQ(); }
+    else { S.step = 'bg'; save(); renderBG(); show('s-bg'); }
+  }, 180);
+});
+$('prev').addEventListener('click', () => { if (S.pos) { S.pos--; save(); renderQ(); } });
+
+// ---------- background ----------
+function renderBG() {
+  $('bgform').innerHTML = BG.map((f) => {
+    let h = '<div class="field"><label class="q">' + f.q + '</label>';
+    const v = S.bg[f.id];
+    if (f.type === 'one' || f.type === 'many') h += '<div class="chips" data-id="' + f.id + '" data-type="' + f.type + '">' + f.opts.map((o) => '<button class="chip' + ((f.type === 'one' ? v === o : (v || []).includes(o)) ? ' on' : '') + '">' + o + '</button>').join('') + '</div>';
+    if (f.type === 'range') h += '<input type="range" min="0" max="10" step="1" id="impact" value="' + (v == null ? 5 : v) + '"><div class="small muted" style="display:flex;justify-content:space-between"><span>0 完全没影响</span><b id="impv" style="color:var(--ink)">' + (v == null ? 5 : v) + '</b><span>10 严重影响</span></div>';
+    if (f.type === 'text') h += '<textarea data-id="' + f.id + '" placeholder="' + f.ph + '">' + (v || '') + '</textarea>';
+    return h + '</div>';
+  }).join('');
+}
+$('bgform').addEventListener('click', (e) => {
+  const c = e.target.closest('.chip'); if (!c) return;
+  const box = c.parentNode, id = box.dataset.id, o = c.textContent;
+  if (box.dataset.type === 'one') { S.bg[id] = o; [...box.children].forEach((x) => x.classList.toggle('on', x === c)); }
+  else {
+    let a = S.bg[id] || [];
+    if (o === '都还好') a = a.includes(o) ? [] : [o];
+    else { a = a.filter((x) => x !== '都还好'); a = a.includes(o) ? a.filter((x) => x !== o) : a.concat(o); }
+    S.bg[id] = a; [...box.children].forEach((x) => x.classList.toggle('on', a.includes(x.textContent)));
+  }
+  save();
+});
+$('bgform').addEventListener('input', (e) => {
+  if (e.target.id === 'impact') { S.bg.impact = +e.target.value; $('impv').textContent = e.target.value; }
+  if (e.target.tagName === 'TEXTAREA') S.bg[e.target.dataset.id] = e.target.value;
+  save();
+});
+$('finish').addEventListener('click', () => { S.done = true; S.step = 'result'; S.date = new Date().toLocaleDateString('zh-CN'); save(); renderResult(); show('s-result'); });
+$('bgback').addEventListener('click', () => { S.pos = 39; renderQ(); show('s-quiz'); });
+
+// ---------- result ----------
+function scores() { return DIMS.map((d, di) => d.items.reduce((s, t, ii) => s + (S.ans[di + '-' + ii] || 0), 0)); }
+function radar(sc) {
+  const cx = 160, cy = 150, R = 95, ang = (i) => -Math.PI / 2 + i * Math.PI / 2;
+  const pt = (i, r) => [cx + Math.cos(ang(i)) * r, cy + Math.sin(ang(i)) * r];
+  let s = '<svg viewBox="-50 0 420 300" style="width:100%;max-width:340px;display:block;margin:0 auto" role="img" aria-label="四维雷达图">';
+  [0.25, 0.5, 0.75, 1].forEach((f) => { s += '<polygon points="' + [0, 1, 2, 3].map((i) => pt(i, R * f).join(',')).join(' ') + '" fill="none" stroke="#E4DCC8" stroke-width="1.5"/>'; });
+  [0, 1, 2, 3].forEach((i) => { const p = pt(i, R); s += '<line x1="' + cx + '" y1="' + cy + '" x2="' + p[0] + '" y2="' + p[1] + '" stroke="#E4DCC8" stroke-width="1.5"/>'; });
+  s += '<polygon points="' + sc.map((v, i) => pt(i, R * v / 40).join(',')).join(' ') + '" fill="rgba(255,198,26,.45)" stroke="#1D2A6B" stroke-width="3" stroke-linejoin="round"/>';
+  sc.forEach((v, i) => { const p = pt(i, R * v / 40); s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="6" fill="' + ['#4FA3FF', '#FF7A1A', '#FF5FA2', '#A98BEA'][i] + '" stroke="#1D2A6B" stroke-width="2"/>'; });
+  const lab = [[cx, 40, 'middle'], [cx + R + 12, cy + 5, 'start'], [cx, cy + R + 24, 'middle'], [cx - R - 12, cy + 5, 'end']];
+  DIMS.forEach((d, i) => { s += '<text x="' + lab[i][0] + '" y="' + lab[i][1] + '" text-anchor="' + lab[i][2] + '" font-size="13" font-weight="700" fill="#1D2A6B">' + d.name + ' ' + sc[i] + '</text>'; });
+  return s + '</svg>';
+}
+const esc = (t) => String(t || '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+function highItems(di, n) {
+  return DIMS[di].items.map((t, ii) => [S.ans[di + '-' + ii] || 0, t]).filter((x) => x[0] >= 3).sort((a, b) => b[0] - a[0]).slice(0, n).map((x) => x[1]);
+}
+function renderResult() {
+  const sc = scores(), top = sc.indexOf(Math.max.apply(null, sc)), bg = S.bg;
+  const health = (bg.health || []).filter((x) => x !== '都还好');
+  const anyHigh = sc.some((v) => v >= 27), impact = bg.impact == null ? 5 : bg.impact;
+  let next = [];
+  if (impact >= 6 || anyHigh) next.push('<b>建议预约精神科或心理科做一次评估</b>，把下面的就诊清单带上。有的医院有成人 ADHD 门诊。');
+  if (health.length) next.push('你提到了<b>' + health.join('、') + '</b>。这些也会让人走神、拖延，记得一并告诉医生。');
+  if (!next.length) next.push('你的分数都不算高。如果你还是觉得很困扰，你的感受同样重要，也可以去咨询。');
+  let h = '<div class="noprint"><svg class="mascot" viewBox="-330 -770 660 800" aria-hidden="true"><g id="m-res"></g></svg></div>' +
+    '<div style="text-align:center"><span class="tag">小Y 的自我观察册 · ' + esc(S.date) + '</span><h1>你的观察结果</h1><p class="muted small">分数段只用来观察，不是诊断标准；分数高不代表“就是”，分数低也不代表“不是”。</p></div>' +
+    '<div class="card">' + radar(sc) + DIMS.map((d, i) => { const L = LEVEL(sc[i]); return '<div class="score" style="--c:' + d.c + '"><b>' + d.name + '</b><div class="bar"><i style="width:' + (sc[i] / 40 * 100) + '%"></i></div><span class="lv" style="color:' + L[1] + '">' + sc[i] + ' · ' + L[0] + '</span></div>'; }).join('') +
+    '<p class="small muted" style="margin-top:10px">每个维度满分 40：0–14 较少出现，15–26 有时出现，27–40 经常出现。</p></div>' +
+    '<div class="card strength"><div class="small" style="opacity:.8">你的优势卡</div><div class="big serif">' + STRENGTH[DIMS[top].key][0] + '</div><p style="margin:0">' + STRENGTH[DIMS[top].key][1] + '</p><p class="small" style="opacity:.7;margin:8px 0 0">不是每个人都这样，也没关系。困难是真的，你的好也是真的。</p></div>' +
+    '<div class="card next"><h2>下一步，可以这样</h2>' + next.map((x) => '<p>' + x + '</p>').join('') + '</div>' +
+    DIMS.map((d, i) => { const hi = highItems(i, 3), L = LEVEL(sc[i]); return '<div class="card dim" style="--c:' + d.c + '"><h2>' + d.name + '<span class="pill">' + sc[i] + ' · ' + L[0] + '</span></h2><p>' + d.what + '</p><h3>你可能更常遇到</h3>' +
+      (hi.length ? '<ul class="tight">' + hi.map((t) => '<li>' + t + '</li>').join('') + '</ul>' : '<p class="muted">这一维里，你选“经常”或“几乎总是”的题不多。</p>') +
+      '<h3>可以试试</h3><ul class="tight">' + d.tips.map((t) => '<li>' + t + '</li>').join('') + '</ul><p class="small muted" style="margin:0">做不到也没关系。</p></div>'; }).join('') +
+    '<div class="card sheet"><h2>一页纸就诊清单</h2><p class="small muted">可以打印出来，或者截图给医生看。</p><table>' +
+      '<tr><td>观察日期</td><td>' + esc(S.date) + '</td></tr>' +
+      '<tr><td>从什么时候开始</td><td>' + esc(bg.onset || '未填') + '</td></tr>' +
+      '<tr><td>出现的场合</td><td>' + esc((bg.where || []).join('、') || '未填') + '</td></tr>' +
+      '<tr><td>对生活的影响</td><td>' + impact + ' / 10</td></tr>' +
+      '<tr><td>最近半年</td><td>' + esc((bg.health || []).join('、') || '未填') + '</td></tr>' +
+      '<tr><td>既往诊断和用药</td><td>' + esc(bg.history || '未填') + '</td></tr>' +
+      '<tr><td>小时候的线索</td><td>' + esc(bg.child || '未填') + '</td></tr>' +
+      DIMS.map((d, i) => { const hi = highItems(i, 2); return '<tr><td>' + d.name + '：' + sc[i] + ' / 40</td><td>' + (hi.length ? hi.map(esc).join('<br>') : '—') + '</td></tr>'; }).join('') +
+    '</table><h3>挂号小指南</h3><ul class="tight"><li>挂<b>精神科</b>或<b>心理科</b>，有的医院有成人 ADHD 专病门诊。</li><li>带上：这份清单、旧成绩单或老师评语、能补充你小时候情况的家人。</li><li>评估通常包括面谈、量表和排除其他原因，可能需要不止一次。</li></ul>' +
+    '<h3>想问医生的 5 个问题</h3><ol class="tight" style="padding-left:20px"><li>我的这些情况，符合 ADHD 的表现吗？还需要做哪些评估？</li><li>有没有可能是别的原因，比如焦虑、抑郁或睡眠问题？</li><li>如果是 ADHD，有哪些治疗或支持的选择？</li><li>在工作或学习上，我可以先做哪些调整？</li><li>下次复诊前，我需要记录什么？</li></ol></div>' +
+    '<div class="card soft"><h2>7 天小练习</h2><ol class="days" style="padding-left:20px;margin:0">' + DAYS.map((t, i) => '<li><b>第 ' + (i + 1) + ' 天</b>　' + t + '</li>').join('') + '</ol></div>' +
+    '<div class="noprint"><button class="btn" onclick="window.print()">打印 / 存成 PDF</button><button class="btn ghost" id="again">重新观察</button></div>' +
+    '<div class="card soft small"><h2 style="font-size:17px">完整声明</h2><ul class="tight"><li>本观察册是自我观察工具，不是医疗器械，不提供诊断、分型或治疗建议。</li><li>题目为原创，未经过临床信度效度验证；分数段仅用于帮助观察，不是诊断标准。</li><li>ADHD 的诊断需要由精神科或心理科医生，结合面谈、成长经历、多个场合的信息和其他检查综合判断。焦虑、抑郁、睡眠问题、甲状腺等身体情况，也可能引起相似的表现。</li><li>如果结果让你感到不安，这很正常。可以把它当作和医生、家人聊一聊的起点。</li><li>如果你有伤害自己的想法，请立即联系身边的人或心理援助热线（如 12356），紧急情况请拨打 120 或前往最近的医院。</li><li>你的答案只保存在这台设备的浏览器里，清除浏览器数据后会消失。</li></ul></div>' +
+    '<p class="foot">小Y的星球笔记 · ADHD</p>';
+  $('s-result').innerHTML = h;
+  mascot($('m-res'), { mouth: 'smile', eye: YY.EMO.joy, armL: 80, armR: 80, lookY: -10 });
+  $('again').addEventListener('click', () => { if (confirm('重新观察会清空这次的答案，确定吗？')) { S = fresh(); save(); $('agree').checked = false; $('go').disabled = true; $('resume').classList.add('hide'); show('s-intro'); } });
+}
+</script>
+</body>
+</html>
