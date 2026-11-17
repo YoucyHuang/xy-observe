@@ -93,6 +93,7 @@ ul.tight { padding-left:20px; margin:6px 0 } ul.tight li { margin-bottom:4px }
       <p class="small muted" style="margin:6px 0 0">兑换码在「小Y的星球笔记」店铺购买后获得。兑换成功后，这台设备以后打开不用再输。</p>
       <p id="codeerr" class="small" style="color:#C0392B;margin:4px 0 0"></p>
     </div>
+    <p id="linkok" class="small hide" style="margin:14px 0 0;padding:10px 14px;border-radius:12px;background:#E6F4EA;color:#2F855A;font-weight:700">✓ 已通过专属链接解锁，勾选下面的“已阅读”就能开始</p>
     <label class="agree"><input type="checkbox" id="agree"> 我已阅读并理解以上内容</label>
     <button class="btn" id="go" disabled>开始观察</button>
     <button class="btn ghost hide" id="resume">继续上次的观察</button>
@@ -205,6 +206,20 @@ async function checkCode(raw) {
 }
 if (isUnlocked()) $('codebox').classList.add('hide');
 $('code').addEventListener('input', () => { $('codeerr').textContent = ''; });
+// one-tap link: .../xy-observe/#XY-XXXX-XXXX redeems automatically, then the code is wiped from the address bar
+(async function linkRedeem() {
+  const m = (location.hash + ' ' + location.search).match(/XY-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}/);
+  if (!m) return;
+  try { history.replaceState(null, '', location.pathname); } catch (e) {}
+  $('code').value = m[0].toUpperCase();
+  if (isUnlocked()) return;
+  if (await checkCode(m[0])) {
+    try { localStorage.setItem(UKEY, '1'); } catch (e) {}
+    $('codebox').classList.add('hide'); $('linkok').classList.remove('hide');
+  } else {
+    $('codeerr').textContent = '这个链接里的兑换码不对，请私信小Y。';
+  }
+})();
 $('go').addEventListener('click', async () => {
   if (!isUnlocked()) {
     if (!(await checkCode($('code').value))) { $('codeerr').textContent = '兑换码不对，请核对一下（格式像 XY-AB12-CD34）。'; $('code').focus(); return; }
